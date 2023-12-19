@@ -1,0 +1,121 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:g="glide" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+    <f:entry title="${%Authentication Token}" field="authToken">
+        <f:secretTextarea />
+    </f:entry>
+
+    <f:entry title="${%Scan Type}" field="scanType">
+ 
+        <f:select default="web_app" id="scanTypeEntry" />
+    </f:entry>
+    
+    <div id="webAppScanConfigFields" style="display: block;">
+        <f:entry title="${%Test Scope}" field="testScope">
+            <f:select />
+        </f:entry>
+    </div>
+
+    <div id="apiScanConfigFields" style="display: none;">
+        <f:entry title="${%API Name}" field="apiName">
+            <f:textbox />
+        </f:entry>
+    </div>
+
+    <div id="raiderScanConfigFields" style="display: none;">
+        <f:entry title="${%Raider Name}" field="raiderName">
+            <f:textbox />
+        </f:entry>
+
+        <f:entry title="${%Regions}" field="regions">
+            <f:select id="regionsEntry" multiple="true" />
+        </f:entry>
+
+        <div id="raiderFrameworks">
+            <f:entry title="${%Frameworks}" field="frameworks">
+                <f:select id="frameWorksEntry" multiple="true" />
+            </f:entry>
+        </div>
+
+        <div id="raiderServices">
+            <f:entry title="${%Services}" field="services">
+                <f:select id="servicesEntry" multiple="true" />
+            </f:entry>
+        </div>
+    </div>
+
+    <f:entry title="${%Cyber Chief API URL}" field="apiUrl">
+        <f:textbox />
+    </f:entry>
+
+    <div id="scanDetails">
+        <f:entry title="${%Fail on High Vulnerabilities}" field="failOnHighVulns">
+            <f:checkbox id="failOnHighVulns" />
+        </f:entry>
+    
+
+        <f:entry title="${%Fail on High and Medium Vulnerabilities}" field="failOnHighMediumVulns">
+            <f:checkbox id="failOnHighMediumVulns" />
+        </f:entry>
+    </div>
+
+    <script>
+        function updateFieldVisibility() {
+            var scanTypeElement = document.getElementById("scanTypeEntry");
+            var webAppScanConfigFields = document.getElementById("webAppScanConfigFields");
+            var apiScanConfigFields = document.getElementById("apiScanConfigFields");
+            var raiderScanConfigFields = document.getElementById("raiderScanConfigFields");
+            var failOnHighVulnsField = document.getElementById("failOnHighVulns");
+            var failOnHighMediumVulnsField = document.getElementById("failOnHighMediumVulns");
+            var scanDetails = document.getElementById("scanDetails");
+
+            if (scanTypeElement) {
+                var selectedValue = scanTypeElement.value;
+
+                webAppScanConfigFields.style.display = "none";
+                apiScanConfigFields.style.display = "none";
+                raiderScanConfigFields.style.display = "none";
+
+                if (selectedValue === "web_app") {
+                    webAppScanConfigFields.style.display = "block";
+                } else if (selectedValue === "api") {
+                    apiScanConfigFields.style.display = "block";
+                } else if (selectedValue === "raider") {
+                    raiderScanConfigFields.style.display = "block";
+                    failOnHighVulnsField.checked = false;
+                    failOnHighMediumVulnsField.checked = false;
+                    scanDetails.style.display = "none";   
+                }
+            } else {
+                console.error("Element not found");
+            }
+        }
+
+        function disableRaiderField() {
+           var frameWorksEntry = document.getElementById("frameWorksEntry");
+           var servicesEntry = document.getElementById("servicesEntry");
+
+            if (frameWorksEntry || servicesEntry) {
+                if (frameWorksEntry.value !== "") {
+                    servicesEntry.disabled = true;
+                } else if (servicesEntry.value !== "") {
+                    frameWorksEntry.disabled = true;
+                } else {
+                    frameWorksEntry.disabled = false;
+                    servicesEntry.disabled = false;
+                }
+            } else {
+                console.error("Entry elements not found");
+            }
+        }
+
+
+        document.getElementById("scanTypeEntry").addEventListener("change", updateFieldVisibility);
+        document.getElementById("frameWorksEntry").addEventListener("change", disableRaiderField);
+        document.getElementById("servicesEntry").addEventListener("change", disableRaiderField);
+
+        updateFieldVisibility();
+        disableRaiderField();
+    </script>
+
+</j:jelly>
+
