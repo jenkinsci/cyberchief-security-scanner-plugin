@@ -43,23 +43,17 @@
     <dependencies>
       <dependency>
         <groupId>io.jenkins.tools.bom</groupId>
-        <artifactId>bom-2.387.x</artifactId>
-        <version>2543.vfb_1a_5fb_9496d</version>
+        <artifactId>bom-2.426.x</artifactId>
+        <version>2582.v830625dd636c</version>
         <type>pom</type>
-        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.15.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.14.0</version>
+      <groupId>io.jenkins.plugins</groupId>
+      <artifactId>commons-lang3-api</artifactId>
+      <version>3.13.0-62.v7d18e55f51e2</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.jettison</groupId>
@@ -68,27 +62,8 @@
     </dependency>
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>structs</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-basic-steps</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-cps</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-durable-task-step</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins.workflow</groupId>
-      <artifactId>workflow-job</artifactId>
-      <scope>test</scope>
+      <artifactId>jackson2-api</artifactId>
+      <version>2.16.1-373.ve709c6871598</version>
     </dependency>
   </dependencies>
 
@@ -105,3 +80,4 @@
     </pluginRepository>
   </pluginRepositories>
 </project>
+
