@@ -46,6 +46,7 @@
         <artifactId>bom-2.426.x</artifactId>
         <version>2582.v830625dd636c</version>
         <type>pom</type>
+        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -53,7 +54,6 @@
     <dependency>
       <groupId>io.jenkins.plugins</groupId>
       <artifactId>commons-lang3-api</artifactId>
-      <version>3.13.0-62.v7d18e55f51e2</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.jettison</groupId>
@@ -63,7 +63,6 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>jackson2-api</artifactId>
-      <version>2.16.1-373.ve709c6871598</version>
     </dependency>
   </dependencies>
 
@@ -80,4 +79,3 @@
     </pluginRepository>
   </pluginRepositories>
 </project>
-
