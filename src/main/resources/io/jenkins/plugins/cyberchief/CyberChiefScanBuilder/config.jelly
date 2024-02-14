@@ -6,7 +6,7 @@
 
     <f:entry title="${%Scan Type}" field="scanType">
  
-        <f:select default="web_app" id="scanTypeEntry" />
+        <f:select default="web_app" id="scanTypeEntry" onchange="updateFieldVisibility()" />
     </f:entry>
     
     <div id="webAppScanConfigFields" style="display: block;">
@@ -32,13 +32,13 @@
 
         <div id="raiderFrameworks">
             <f:entry title="${%Frameworks}" field="frameworks">
-                <f:select id="frameWorksEntry" multiple="true" />
+                <f:select id="frameWorksEntry" multiple="true" onchange="disableRaiderField()" />
             </f:entry>
         </div>
 
         <div id="raiderServices">
             <f:entry title="${%Services}" field="services">
-                <f:select id="servicesEntry" multiple="true" />
+                <f:select id="servicesEntry" multiple="true" onchange="disableRaiderField()" />
             </f:entry>
         </div>
     </div>
@@ -58,6 +58,9 @@
         </f:entry>
     </div>
 
-    <st:adjunct includes="io.jenkins.plugins.cyberchief.ScanConfig"/>
+    <st:adjunct includes="io.jenkins.plugins.cyberchief.ScanConfig">
+        <script src="${rootURL}/static/io/jenkins/plugins/cyberchief/ScanConfig.js"></script>
+    </st:adjunct>
+
 </j:jelly>
 
